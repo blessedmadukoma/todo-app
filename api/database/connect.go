@@ -11,7 +11,7 @@ import (
 var DB *gorm.DB
 
 func ConnectDB() {
-	dsn := "host=localhost user=postgres password=hzKD2b#KXk!hhseB=+U7P?A? dbname=todoapp_db port=5432"
+	dsn := "host=localhost user=postgres password=postgres dbname=todo_vue_go port=5432"
 	database, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {

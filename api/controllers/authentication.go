@@ -1,10 +1,11 @@
 package controllers
 
 import (
+	"fmt"
+
 	"github.com/blessedmadukoma/todo-vue-go/config"
 	"github.com/blessedmadukoma/todo-vue-go/database"
 	"github.com/blessedmadukoma/todo-vue-go/models"
-	"fmt"
 
 	"net/http"
 	"strconv"
@@ -15,11 +16,12 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+type LoginInput struct {
+	Email    string `json:"email" binding:"required"`
+	Password string `json:"password" binding:"required"`
+}
+
 func Login(c *gin.Context) {
-	type LoginInput struct {
-		Email    string `json:"email" binding:"required"`
-		Password string `json:"password" binding:"required"`
-	}
 
 	var input LoginInput
 
@@ -65,14 +67,15 @@ func Login(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"status": "success", "message": "User logged in.", "data": token})
 }
 
+type RegisterInput struct {
+	FirstName            string `json:"firstName" binding:"required"`
+	LastName             string `json:"lastName" binding:"required"`
+	Email                string `json:"email" binding:"required"`
+	Password             string `json:"password" binding:"required"`
+	PasswordConfirmation string `json:"passwordConfirmation" binding:"required"`
+}
+
 func Register(c *gin.Context) {
-	type RegisterInput struct {
-		FirstName            string `json:"firstName" binding:"required"`
-		LastName             string `json:"lastName" binding:"required"`
-		Email                string `json:"email" binding:"required"`
-		Password             string `json:"password" binding:"required"`
-		PasswordConfirmation string `json:"passwordConfirmation" binding:"required"`
-	}
 
 	var input RegisterInput
 
