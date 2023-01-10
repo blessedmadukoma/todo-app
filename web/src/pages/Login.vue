@@ -17,7 +17,10 @@ const onSubmit = async () => {
  const response = await axios.post(`${API_URL}/login`, options).then(res => res.data).catch(error => console.error(`error posting to backend: ${error}`)
  )
 
- console.log(response);
+ // console.log(response);
+
+ // store user data in local storage
+ localStorage.setItem("token", response.data);
  
 }
 </script>
