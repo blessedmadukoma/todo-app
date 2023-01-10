@@ -18,6 +18,14 @@ func main() {
 
 	app.Use(cors.Default()) // TODO: Configure this later to lock it down better
 
+	// better/more secure CORS setting
+	cfg := cors.DefaultConfig()
+	// cfg.AllowOrigins = []string{"*"}
+	cfg.AllowOrigins = []string{"http://127.0.0.1:5173"}
+	app.Use(cors.Default()) // The better/more secure CORS setting
+
+	app.Use(cors.New(cfg))
+
 	app.GET("/health", func(c *gin.Context) {
 		var response struct {
 			Health string

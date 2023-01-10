@@ -2,12 +2,12 @@ version: "3"
 
 services:
   database:
-    image: "postgres" # use latest official postgres version
+    image: "postgres14" # use latest official postgres version
     restart: "no"
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: hzKD2b#KXk!hhseB=+U7P?A?
-      POSTGRES_DB: todoapp_db
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: todo_vue_go
     networks:
       - db_network
     volumes:
