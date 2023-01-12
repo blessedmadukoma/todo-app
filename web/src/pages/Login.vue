@@ -1,11 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import axios from 'axios'
 
 const API_URL = 'http://localhost:4000/api'
 
 const email = ref("")
 const password = ref("")
+const authenticated = ref(false)
+
+onMounted(() => {
+ const token = localStorage.getItem('token')
+
+ authenticated.value = token != null;
+})
 
 const onSubmit = async () => {
 
@@ -21,13 +28,15 @@ const onSubmit = async () => {
 
  // store user data in local storage
  localStorage.setItem("token", response.data);
- 
+ authenticated.value = true
+
 }
 </script>
 
 <template>
- <input v-model="email" type="email">
- <input v-model="password" type="password">
+ <input v-model="email" type="email" placeholder="Email">
+ <input v-model="password" type="password" placeholder="Password">
  <button @click="onSubmit">Submit</button>
- <span>Not Authenticated!</span>
+ <span v-if="authenticated">Authenticated!</span>
+ <span v-else>Not Authenticated!</span>
 </template>
