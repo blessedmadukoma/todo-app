@@ -23,18 +23,20 @@ const onSubmit = async () => {
   passwordConfirmation: passwordConfirmation.value
  }
 
- console.log(options);
- // return
+ const response = await axios.post(`${API_URL}/register`, options).then(res => res.data).catch((error) => {
+  console.error(`error posting to backend: ${error}`)
+  return
+ })
 
- const response = await axios.post(`${API_URL}/register`, options).then(res => res.data).catch(error => console.error(`error posting to backend: ${error}`)
- )
-
- console.log(response.data);
+ console.log(`Response: ${response}`);
+ 
 
  registrationData.value = response
 
+ console.log(registrationData.value);
+
  // store user data in local storage
- localStorage.setItem("token", response.data);
+ localStorage.setItem("token", response.data.token);
  authenticated.value = true
 
 }
