@@ -7,7 +7,7 @@ let currentRoute = ref("login");
 
 const changeRoute = (path: string) => {
   console.log(path);
-  
+
   currentRoute.value = path;
 }
 
@@ -17,10 +17,26 @@ const changeRoute = (path: string) => {
   <button @click="changeRoute('register')">Register</button>
   <button @click="changeRoute('login')">Login</button>
   <br>
-  <Login v-if="currentRoute === 'login' " />
+  <Login v-if="currentRoute === 'login'" />
   <Register v-else />
 </template>
 
 <style scoped>
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
 
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  width: 100%;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  font-family: "Source Sans Pro"
+}
 </style>
