@@ -16,13 +16,12 @@ func main() {
 
 	app := gin.Default()
 
-	app.Use(cors.Default()) // TODO: Configure this later to lock it down better
+	// app.Use(cors.Default()) // TODO: Configure this later to lock it down better
 
 	// better/more secure CORS setting
 	cfg := cors.DefaultConfig()
-	// cfg.AllowOrigins = []string{"*"}
-	cfg.AllowOrigins = []string{"http://127.0.0.1:5173"}
-	app.Use(cors.Default()) // The better/more secure CORS setting
+	cfg.AllowOrigins = []string{"*"}
+	// cfg.AllowOrigins = []string{"https://127.0.0.1:5173"} // The better/more secure CORS setting
 
 	app.Use(cors.New(cfg))
 
