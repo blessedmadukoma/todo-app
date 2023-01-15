@@ -1,18 +1,14 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
+import { useRouter } from 'vue-router';
 
 const API_URL = 'http://localhost:4000/api'
 
+const router = useRouter()
+
 const email = ref("")
 const password = ref("")
-const authenticated = ref(false)
-
-onMounted(() => {
- const token = localStorage.getItem('token')
-
- authenticated.value = token != null;
-})
 
 const onSubmit = async () => {
 
@@ -28,8 +24,8 @@ const onSubmit = async () => {
 
  // store user data in local storage
  localStorage.setItem("token", response.data);
- authenticated.value = true
 
+ router.push("/")
 }
 </script>
 

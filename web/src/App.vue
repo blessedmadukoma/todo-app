@@ -14,11 +14,14 @@ const changeRoute = (path: string) => {
 </script>
 
 <template>
-  <button @click="changeRoute('register')">Register</button>
+
+  <router-view></router-view>
+
+  <!-- <button @click="changeRoute('register')">Register</button>
   <button @click="changeRoute('login')">Login</button>
   <br>
   <Login v-if="currentRoute === 'login'" />
-  <Register v-else />
+  <Register v-else /> -->
 </template>
 
 <style scoped>
